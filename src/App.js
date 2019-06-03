@@ -13,7 +13,8 @@ class App extends Component {
   render() {
     
     const navbar={
-      height: '60px'   
+      height: '60px',
+      zIndex: '99999'  
     }
     
     return (
