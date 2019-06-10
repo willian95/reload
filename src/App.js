@@ -6,12 +6,11 @@ import Home from "./components/home.component";
 import SignIn from "./components/signIn.component";
 import Register from "./components/register.component";
 import Dashboard from "./components/dashboard.component";
-
 import logo from "./logo.svg";
 
 class App extends Component {
   render() {
-    
+
     const navbar={
       height: '60px',
       zIndex: '99999'  
@@ -19,8 +18,8 @@ class App extends Component {
     
     return (
     
-      <Router>
-          <nav className="navbar navbar-expand-lg navbar-light bg-light" style={navbar}>
+      <Router> 
+          <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" style={navbar}>
             <a className="navbar-brand" href="https://codingthesmartway.com" target="_blank">
               <img src={logo} width="30" height="30" alt="CodingTheSmartWay.com" />
             </a>
@@ -38,7 +37,7 @@ class App extends Component {
           </nav>
           <br/>
           <Route path="/" exact component={Home} />
-          <Route path="/sign" component={SignIn} />
+          <Route path="/sign" component={SignIn}/>
           <Route path="/register" component={Register} />
           <Route path="/dashboard" component={Dashboard} />
       </Router>

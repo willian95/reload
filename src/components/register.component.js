@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import './register.css'
 
 import Dashboard from "./dashboard.component";
 
@@ -96,34 +97,37 @@ export default class Register extends Component {
 
         return (
             <Router>
-            <div>
-                <div className="container">
-                    <div className="row">
+            <div className="register full-height">
+                <div className="cover">
+                <div className="container full-height">
+                    <div className="row align-items-center full-height">
                         <div className="col-lg-6 offset-lg-3">
-                        <div className="card" style={fullWidth}>
-                                <div className="card-body">
-                                    <h5 className="card-title">Register</h5>
-                                    <form onSubmit={this.onSubmit}>
-                                        <div className="form-group">
-                                            <label htmlFor="name">Name</label>
-                                            <input type="text" className="form-control" id="name" value={this.state.name} aria-describedby="emailHelp" onChange={this.onChangeName}/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="email">Email</label>
-                                            <input type="email" className="form-control" id="password" aria-describedby="emailHelp" value={this.state.email} placeholder="Enter email" onChange={this.onChangeEmail}/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="password">Password</label>
-                                            <input type="password" className="form-control" id="password" aria-describedby="emailHelp" value={this.state.password} onChange={this.onChangePassword}/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="password2">Repeat Password</label>
-                                            <input type="password" className="form-control" id="password2" aria-describedby="emailHelp" value={this.state.passwordRepeat} onChange={this.onChangePasswordRepeat}/>
-                                        </div>
-                                        <p className="text-center">
-                                            <button className="btn btn-primary">Sign Up</button>
-                                        </p>
-                                    </form>
+                            <div className="card" style={fullWidth}>
+                                    <div className="card-body">
+                                        <h5 className="card-title">Register</h5>
+                                        <form onSubmit={this.onSubmit}>
+                                            <div class="form__group">
+                                                <input type="text" class="form__field" id="name" value={this.state.name} aria-describedby="emailHelp" onChange={this.onChangeName} placeholder="email"/>
+                                                <label for="name" class="form__label">Nombre</label>
+                                            </div>
+                                            <div class="form__group">
+                                                <input type="email" class="form__field" id="email" value={this.state.email} aria-describedby="emailHelp" onChange={this.onChangeEmail} placeholder="email"/>
+                                                <label for="email" class="form__label">Email</label>
+                                            </div>
+                                            <div class="form__group">
+                                                <input type="password" class="form__field" id="password" value={this.state.password} aria-describedby="emailHelp" onChange={this.onChangePassword} placeholder="email"/>
+                                                <label for="email" class="form__label">Clave</label>
+                                            </div>
+                                            <div class="form__group">
+                                                <input type="password" class="form__field" id="repeat-password" value={this.state.passwordRepeat} aria-describedby="emailHelp" onChange={this.onChangePasswordRepeat} placeholder="email"/>
+                                                <label for="repeat-password" class="form__label">Repetir Clave</label>
+                                            </div>
+                                            
+                                            <p className="text-center sign-div">
+                                                <button type="submit" className="btn btn-primary custom-button">Sign Up</button>
+                                            </p>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

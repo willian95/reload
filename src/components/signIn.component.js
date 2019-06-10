@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import './signin.css'
+
+import { connect } from 'react-redux';
+import { updateUser } from '../actions/users-action';
 
 import Dashboard from "./dashboard.component";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
 
     constructor(props) {
         super(props);
@@ -25,17 +29,16 @@ export default class SignIn extends Component {
     onSubmit(e) {
         e.preventDefault();
         
-        console.log(`Form submitted:`);
-        console.log(`Todo Description: ${this.state.email}`);
-        console.log(`Todo Responsible: ${this.state.password}`);
-        
         const user = {
             email: this.state.email,
             password: this.state.password,
         };
 
-        axios.post('http://localhost:4000/api/user/signIn', user)
+
+
+        axios.post(this.props.url+'/api/user/signIn', user)
             .then(res => {
+                
                 if(res.data.success == true){
 
                     this.setState({
@@ -47,8 +50,11 @@ export default class SignIn extends Component {
                 }
 
             });
-
         
+    }
+
+    onUpdateUser(){
+        this.props.onUpdateUser()
     }
 
     onChangeEmail(e) {
@@ -65,6 +71,8 @@ export default class SignIn extends Component {
 
     render() {
 
+        console.log(this.props)
+
         const fullWidth = {
             width: '100%'
         };
@@ -72,31 +80,33 @@ export default class SignIn extends Component {
         const { redirect } = this.state;
 
         if (redirect) {
-            return <Redirect to='/dashboard'/>;
+            {return <Redirect to='/dashboard'/>;}
         }
 
         return (
             <Router>
-                <div>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6 offset-lg-3">
-                            <div className="card" style={fullWidth}>
-                                    <div className="card-body">
-                                        <h5 className="card-title">Log In</h5>
-                                        <form onSubmit={this.onSubmit}>
-                                            <div className="form-group">
-                                                <label htmlFor="email">Email</label>
-                                                <input type="email" className="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail}/>
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="password">Password</label>
-                                                <input type="password" className="form-control" id="password" aria-describedby="emailHelp" value={this.state.password} onChange={this.onChangePassword}/>
-                                            </div>
-                                            <p className="text-center">
-                                                <button type="submit" className="btn btn-primary">Sign In</button>
-                                            </p>
-                                        </form>
+                <div className="signin full-height">
+                    <div className="cover">
+                        <div className="container full-height">
+                            <div className="row align-items-center full-height">
+                                <div className="col-lg-6 offset-lg-3">
+                                <div className="card" style={fullWidth}>
+                                        <div className="card-body">
+                                            <h5 className="card-title">Log In</h5>
+                                            <form onSubmit={this.onSubmit}>
+                                                <div class="form__group">
+                                                    <input type="email" id="email" class="form__field" placeholder="email" value={this.state.email} onChange={this.onChangeEmail}/>
+                                                    <label for="email" class="form__label">Email</label>
+                                                </div>
+                                                <div class="form__group">
+                                                    <input type="password" id="password" class="form__field" placeholder="pass" value={this.state.password} onChange={this.onChangePassword}/>
+                                                    <label for="password" class="form__label">Clave</label>
+                                                </div>
+                                                <p className="text-center sign-div">
+                                                    <button type="submit" className="btn btn-success custom-button">Sign In</button>
+                                                </p>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -108,3 +118,14 @@ export default class SignIn extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    user: state.user,
+    url: state.url
+})
+
+const mapActionsToProps = {
+    onUpdateUser: updateUser
+}
+
+export default connect(mapStateToProps)(SignIn);

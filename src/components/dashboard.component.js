@@ -32,7 +32,7 @@ export default class Dashboard extends Component {
                         <div className="row">
                             <div className="col-lg-4"></div>
                             <div className="col-lg-4">
-                                <div class="card" style={card}>
+                                <div className="card" style={card}>
                                     <img src={movilnet} width="30" height="30" style={fullImage} alt="CodingTheSmartWay.com" />
                                 </div>
 
