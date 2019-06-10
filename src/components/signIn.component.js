@@ -94,13 +94,13 @@ class SignIn extends Component {
                                         <div className="card-body">
                                             <h5 className="card-title">Log In</h5>
                                             <form onSubmit={this.onSubmit}>
-                                                <div class="form__group">
-                                                    <input type="email" id="email" class="form__field" placeholder="email" value={this.state.email} onChange={this.onChangeEmail}/>
-                                                    <label for="email" class="form__label">Email</label>
+                                                <div className="form__group">
+                                                    <input type="email" id="email" className="form__field" placeholder="email" value={this.state.email} onChange={this.onChangeEmail}/>
+                                                    <label htmlFor="email" className="form__label">Email</label>
                                                 </div>
-                                                <div class="form__group">
-                                                    <input type="password" id="password" class="form__field" placeholder="pass" value={this.state.password} onChange={this.onChangePassword}/>
-                                                    <label for="password" class="form__label">Clave</label>
+                                                <div className="form__group">
+                                                    <input type="password" id="password" className="form__field" placeholder="pass" value={this.state.password} onChange={this.onChangePassword}/>
+                                                    <label htmlFor="password" className="form__label">Clave</label>
                                                 </div>
                                                 <p className="text-center sign-div">
                                                     <button type="submit" className="btn btn-success custom-button">Sign In</button>
